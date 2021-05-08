@@ -1,4 +1,4 @@
-# Zhu_Zhao_2018
+# Zhu 2018
 
 This is a matlab implementation of the forgery detection method described in: 
 
