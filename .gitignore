@@ -2,3 +2,5 @@
 CG-1050/
 images/
 results/
+*.asv
+*output.png
