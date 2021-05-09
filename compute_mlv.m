@@ -29,15 +29,19 @@ mlv=max(mlv,x6);
 mlv=max(mlv,x7);
 mlv=max(mlv,x8);
 
-mlv_vec = unique(reshape(mlv,1,[]));
-[sorted_values , rank] = sort(mlv_vec,'ascend');
-weights = exp(rank/length(rank));
+ranks = rank_with_duplicates(mlv(:));
+ranks = ranks + (-1);
+ranks = ranks/(length(ranks));
+weighted_ranks = exp(ranks);
+weighted_ranks = reshape(weighted_ranks, size(mlv));
 
-for k=1:length(sorted_values);
-    value = sorted_values(k);
-    weight = weights(k);
-    mlv(find(mlv==value)) = value*weight;
-end
+mlv = mlv.*weighted_ranks;
+
+% for k=1:length(sorted_values);
+%     value = sorted_values(k);
+%     weight = weights(k);
+%     mlv(find(mlv==value)) = value*weight;
+% end
 end % function
 
 
